@@ -1,7 +1,7 @@
 #include <Wire.h>
-#include <GFXHat.h>
+#include <GFXHAT.h>
 
-GFXHatTouch touch;
+GFXHATTouch touch;
 
 void setup() {
   Serial.begin(115200);

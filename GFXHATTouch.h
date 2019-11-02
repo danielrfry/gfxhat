@@ -19,9 +19,9 @@
 
 #define GFXHAT_TOUCH_I2C_ADDR 0x2c
 
-class GFXHatTouch {
+class GFXHATTouch {
     public:
-        GFXHatTouch();
+        GFXHATTouch();
 
         void begin();
         void end();

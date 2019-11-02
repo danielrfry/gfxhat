@@ -7,9 +7,9 @@
 #define GFXHAT_LCD_WIDTH     128
 #define GFXHAT_LCD_HEIGHT    64
 
-class GFXHatLCD : public Adafruit_GFX {
+class GFXHATLCD : public Adafruit_GFX {
     public:
-        GFXHatLCD(uint8_t pinRst, uint8_t pinDC, uint8_t pinCS);
+        GFXHATLCD(uint8_t pinRst, uint8_t pinDC, uint8_t pinCS);
         void begin();
         void end();
         void setContrast(uint8_t contrast);

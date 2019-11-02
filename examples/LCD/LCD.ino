@@ -1,5 +1,5 @@
 #include <SPI.h>
-#include <GFXHat.h>
+#include <GFXHAT.h>
 
 
 // The Arduino pin connected to the LCD Chip Select input of the GFX Hat.
@@ -10,7 +10,7 @@
 #define PIN_LCD_DC 2
 
 
-GFXHatLCD lcd(PIN_LCD_RST, PIN_LCD_DC, PIN_LCD_CS);
+GFXHATLCD lcd(PIN_LCD_RST, PIN_LCD_DC, PIN_LCD_CS);
 
 
 void setup() {

@@ -5,7 +5,7 @@
 #include <Arduino.h>
 #include <SPI.h>
 
-#include "GFXHatLCD.h"
+#include "GFXHATLCD.h"
 
 #define ST7567_PAGESIZE 128
 
@@ -61,13 +61,13 @@
 
 #define ST7567_NOP 0xe3             // 0xe3: NOP Command for no operation  
 
-GFXHatLCD::GFXHatLCD(uint8_t pinRst, uint8_t pinDC, uint8_t pinCS) : Adafruit_GFX(GFXHAT_LCD_WIDTH, GFXHAT_LCD_HEIGHT) {
+GFXHATLCD::GFXHATLCD(uint8_t pinRst, uint8_t pinDC, uint8_t pinCS) : Adafruit_GFX(GFXHAT_LCD_WIDTH, GFXHAT_LCD_HEIGHT) {
     this->pinRst = pinRst;
     this->pinDC = pinDC;
     this->pinCS = pinCS;
 }
 
-void GFXHatLCD::begin() {
+void GFXHATLCD::begin() {
     pinMode(pinCS, OUTPUT);
     digitalWrite(pinCS, HIGH);
     pinMode(pinRst, OUTPUT);
@@ -79,17 +79,17 @@ void GFXHatLCD::begin() {
     this->init();
 }
 
-void GFXHatLCD::end() {
+void GFXHATLCD::end() {
 }
 
-void GFXHatLCD::reset() {
+void GFXHATLCD::reset() {
     digitalWrite(this->pinRst, LOW);
     delay(10);
     digitalWrite(this->pinRst, HIGH);
     delay(100);
 }
 
-void GFXHatLCD::init() {
+void GFXHATLCD::init() {
     uint8_t cmds[] = {
         ST7567_BIAS_1_7,
         ST7567_SEG_DIR_NORMAL,
@@ -106,12 +106,12 @@ void GFXHatLCD::init() {
     this->setContrast(44);
 }
 
-void GFXHatLCD::setContrast(uint8_t contrast) {
+void GFXHATLCD::setContrast(uint8_t contrast) {
     uint8_t buffer[] = { ST7567_SETCONTRAST, contrast };
     this->write(true, &buffer[0], 2);
 }
 
-void GFXHatLCD::show() {
+void GFXHATLCD::show() {
     this->command(ST7567_ENTER_RMWMODE);
     for (uint8_t page = 0; page < 8; page++) {
         uint8_t pageData[ST7567_PAGESIZE];
@@ -124,7 +124,7 @@ void GFXHatLCD::show() {
     this->command(ST7567_EXIT_RMWMODE);
 }
 
-void GFXHatLCD::write(bool command, uint8_t *buffer, int size) {
+void GFXHATLCD::write(bool command, uint8_t *buffer, int size) {
     digitalWrite(this->pinDC, command ? LOW : HIGH);
     SPI.beginTransaction(SPISettings(1000000, MSBFIRST, SPI_MODE0));
     digitalWrite(this->pinCS, LOW);
@@ -133,11 +133,11 @@ void GFXHatLCD::write(bool command, uint8_t *buffer, int size) {
     SPI.endTransaction();
 }
 
-void GFXHatLCD::command(uint8_t command) {
+void GFXHATLCD::command(uint8_t command) {
     this->write(true, &command, 1);
 }
 
-void GFXHatLCD::drawPixel(int16_t x, int16_t y, uint16_t color) {
+void GFXHATLCD::drawPixel(int16_t x, int16_t y, uint16_t color) {
     if (x >= GFXHAT_LCD_WIDTH || x < 0 || y >= GFXHAT_LCD_HEIGHT || y < 0)
         return;
     
@@ -147,6 +147,6 @@ void GFXHatLCD::drawPixel(int16_t x, int16_t y, uint16_t color) {
     this->buffer[offset] |= (color & 1) << bit;
 }
 
-void GFXHatLCD::fillScreen(uint16_t color) {
+void GFXHATLCD::fillScreen(uint16_t color) {
     memset(this->buffer, color ? 0xff : 0, GFXHAT_LCD_WIDTH * GFXHAT_LCD_HEIGHT / 8);
 }
