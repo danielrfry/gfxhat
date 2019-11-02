@@ -1,4 +1,4 @@
-# gfxhat
+# GFX HAT
 
 This is an Arduino driver for the [Pimoroni GFX HAT](https://shop.pimoroni.com/products/gfx-hat).
 
