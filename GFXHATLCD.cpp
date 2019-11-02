@@ -1,4 +1,4 @@
-// Pimoroni GFX Hat LCD driver for Arduino.
+// Pimoroni GFX HAT LCD driver for Arduino.
 // Based on Pimoroni's Python library:
 // https://github.com/pimoroni/gfx-hat/
 
